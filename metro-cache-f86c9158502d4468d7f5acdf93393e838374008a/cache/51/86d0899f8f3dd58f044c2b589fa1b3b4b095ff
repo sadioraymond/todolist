@@ -17,6 +17,10 @@ __d(function (global, require, module, exports, _dependencyMap) {
 
     var _reactNative = require(_dependencyMap[2], "react-native");
 
+    var _Tache = require(_dependencyMap[3], "./Tache");
+
+    var _Tache2 = _interopRequireDefault(_Tache);
+
     function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
     function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -53,8 +57,8 @@ __d(function (global, require, module, exports, _dependencyMap) {
             var _this = _possibleConstructorReturn(this, (Main.__proto__ || Object.getPrototypeOf(Main)).call(this, props));
 
             _this.state = {
-                noteArray: [],
-                tachText: ''
+                tacheArray: [],
+                tacheText: ''
             };
             return _this;
         }
@@ -64,13 +68,27 @@ __d(function (global, require, module, exports, _dependencyMap) {
             value: function render() {
                 var _this2 = this;
 
+                var taches = this.state.tacheArray.map(function (val, key) {
+                    return _react3.default.createElement(_Tache2.default, {
+                        key: key,
+                        keyval: key,
+                        val: val,
+                        deleteMethod: function deleteMethod() {
+                            return _this2.deleteTache(key);
+                        },
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 24
+                        }
+                    });
+                });
                 return _react3.default.createElement(
                     _reactNative.View,
                     {
                         style: styles.container,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 22
+                            lineNumber: 28
                         }
                     },
                     _react3.default.createElement(
@@ -79,7 +97,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                             style: styles.header,
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 23
+                                lineNumber: 29
                             }
                         },
                         _react3.default.createElement(
@@ -88,26 +106,30 @@ __d(function (global, require, module, exports, _dependencyMap) {
                                 style: styles.headerText,
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 24
+                                    lineNumber: 30
                                 }
                             },
                             "- Liste Des Taches -"
                         )
                     ),
-                    _react3.default.createElement(_reactNative.ScrollView, {
-                        style: styles.scrollContainer,
-                        __source: {
-                            fileName: _jsxFileName,
-                            lineNumber: 26
-                        }
-                    }),
+                    _react3.default.createElement(
+                        _reactNative.ScrollView,
+                        {
+                            style: styles.scrollContainer,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 32
+                            }
+                        },
+                        taches
+                    ),
                     _react3.default.createElement(
                         _reactNative.View,
                         {
                             style: styles.footer,
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 30
+                                lineNumber: 36
                             }
                         },
                         _react3.default.createElement(_reactNative.TextInput, {
@@ -123,17 +145,18 @@ __d(function (global, require, module, exports, _dependencyMap) {
                             underlineColorAndroid: "transparent",
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 31
+                                lineNumber: 37
                             }
                         })
                     ),
                     _react3.default.createElement(
                         _reactNative.TouchableOpacity,
                         {
+                            onPress: this.addTache.bind(this),
                             style: styles.addButton,
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 40
+                                lineNumber: 46
                             }
                         },
                         _react3.default.createElement(
@@ -142,13 +165,38 @@ __d(function (global, require, module, exports, _dependencyMap) {
                                 style: styles.addButtonText,
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 41
+                                    lineNumber: 47
                                 }
                             },
                             "+"
                         )
                     )
                 );
+            }
+        }, {
+            key: "addTache",
+            value: function addTache() {
+                if (this.state.tacheText) {
+                    var d = new Date();
+                    this.state.tacheArray.push({
+                        'date': d.getFullYear() + "/" + (d.getMonth() + 1) + "/" + d.getDate(),
+                        'tache': this.state.tacheText
+                    });
+                    this.setState({
+                        tacheArray: this.state.tacheArray
+                    });
+                    this.setState({
+                        tacheText: ''
+                    });
+                }
+            }
+        }, {
+            key: "deleteTache",
+            value: function deleteTache(key) {
+                this.state.tacheArray.splice(key, 1);
+                this.setState({
+                    tacheArray: this.state.tacheArray
+                });
             }
         }]);
 

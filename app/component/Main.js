@@ -9,22 +9,28 @@ import {
 
 } from 'react-native';
 
+import Tache from './Tache';
+
 export default class Main extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            noteArray: [],
-            tachText: '',
+            tacheArray: [],
+            tacheText: '',
         };
     }
   render() {
+    let taches = this.state.tacheArray.map((val, key)=>{
+        return <Tache key={key} keyval={key} val={val}
+                deleteMethod={()=>this.deleteTache(key)}/>
+    });
     return (
         <View style={styles.container}>
         <View style={styles.header}>
             <Text style={styles.headerText}>- Liste Des Taches -</Text>
         </View>
         <ScrollView style={styles.scrollContainer}>
-           
+           {taches}
         </ScrollView>
 
         <View style={styles.footer}>
@@ -37,12 +43,29 @@ export default class Main extends React.Component {
                 underlineColorAndroid='transparent'>
             </TextInput>
         </View>
-        <TouchableOpacity style={styles.addButton}>
+        <TouchableOpacity onPress={ this.addTache.bind(this) } style={styles.addButton}>
             <Text style={styles.addButtonText}>+</Text>
         </TouchableOpacity>
     </View>
     );
   }
+  addTache(){
+    if(this.state.tacheText){
+        var d = new Date();
+        this.state.tacheArray.push({
+            'date':d.getFullYear()+
+            "/"+(d.getMonth()+1) +
+            "/"+ d.getDate(),
+            'tache': this.state.tacheText
+        });
+        this.setState({ tacheArray: this.state.tacheArray });
+        this.setState({tacheText:''});
+    }
+}
+deleteTache(key){
+    this.state.tacheArray.splice(key, 1);
+    this.setState({tacheArray: this.state.tacheArray});
+}
 }
 
 const styles = StyleSheet.create({
