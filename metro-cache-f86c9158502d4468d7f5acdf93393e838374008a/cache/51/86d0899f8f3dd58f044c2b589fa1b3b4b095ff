@@ -1,0 +1,261 @@
+__d(function (global, require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+
+    var _react2 = require(_dependencyMap[0], "react");
+
+    var _react3 = _interopRequireDefault(_react2);
+
+    var _index = require(_dependencyMap[1], "./../../node_modules/react-transform-hmr/lib/index.js");
+
+    var _index2 = _interopRequireDefault(_index);
+
+    var _jsxFileName = "/home/raymond/Bureau/reactapp/todolist/app/component/Main.js";
+
+    var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+    var _reactNative = require(_dependencyMap[2], "react-native");
+
+    var _Tache = require(_dependencyMap[3], "./Tache");
+
+    var _Tache2 = _interopRequireDefault(_Tache);
+
+    function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+    function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+    function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+    function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+    var _components = {
+        Main: {
+            displayName: "Main"
+        }
+    };
+
+    var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
+        filename: "/home/raymond/Bureau/reactapp/todolist/app/component/Main.js",
+        components: _components,
+        locals: [module],
+        imports: [_react3.default]
+    });
+
+    function _wrapComponent(id) {
+        return function (Component) {
+            return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
+        };
+    }
+
+    var Main = _wrapComponent("Main")(function (_React$Component) {
+        _inherits(Main, _React$Component);
+
+        function Main(props) {
+            _classCallCheck(this, Main);
+
+            var _this = _possibleConstructorReturn(this, (Main.__proto__ || Object.getPrototypeOf(Main)).call(this, props));
+
+            _this.state = {
+                tacheArray: [],
+                tacheText: ''
+            };
+            return _this;
+        }
+
+        _createClass(Main, [{
+            key: "render",
+            value: function render() {
+                var _this2 = this;
+
+                var taches = this.state.tacheArray.map(function (val, key) {
+                    return _react3.default.createElement(_Tache2.default, {
+                        key: key,
+                        keyval: key,
+                        val: val,
+                        deleteMethod: function deleteMethod() {
+                            return _this2.deleteTache(key);
+                        },
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 24
+                        }
+                    });
+                });
+                return _react3.default.createElement(
+                    _reactNative.View,
+                    {
+                        style: styles.container,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 28
+                        }
+                    },
+                    _react3.default.createElement(
+                        _reactNative.View,
+                        {
+                            style: styles.header,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 29
+                            }
+                        },
+                        _react3.default.createElement(
+                            _reactNative.Text,
+                            {
+                                style: styles.headerText,
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 30
+                                }
+                            },
+                            "- Liste Des Taches -"
+                        )
+                    ),
+                    _react3.default.createElement(
+                        _reactNative.ScrollView,
+                        {
+                            style: styles.scrollContainer,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 32
+                            }
+                        },
+                        taches
+                    ),
+                    _react3.default.createElement(
+                        _reactNative.View,
+                        {
+                            style: styles.footer,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 36
+                            }
+                        },
+                        _react3.default.createElement(_reactNative.TextInput, {
+                            style: styles.textInput,
+                            placeholder: ">tache",
+                            onChangeText: function onChangeText(tacheText) {
+                                return _this2.setState({
+                                    tacheText: tacheText
+                                });
+                            },
+                            value: this.state.tacheText,
+                            placeholderTextColor: "white",
+                            underlineColorAndroid: "transparent",
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 37
+                            }
+                        })
+                    ),
+                    _react3.default.createElement(
+                        _reactNative.TouchableOpacity,
+                        {
+                            onPress: this.addTache.bind(this),
+                            style: styles.addButton,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 46
+                            }
+                        },
+                        _react3.default.createElement(
+                            _reactNative.Text,
+                            {
+                                style: styles.addButtonText,
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 47
+                                }
+                            },
+                            "+"
+                        )
+                    )
+                );
+            }
+        }, {
+            key: "addTache",
+            value: function addTache() {
+                if (this.state.tacheText) {
+                    var d = new Date();
+                    this.state.tacheArray.push({
+                        'date': d.getFullYear() + "/" + (d.getMonth() + 1) + "/" + d.getDate(),
+                        'tache': this.state.tacheText
+                    });
+                    this.setState({
+                        tacheArray: this.state.tacheArray
+                    });
+                    this.setState({
+                        tacheText: ''
+                    });
+                }
+            }
+        }, {
+            key: "deleteTache",
+            value: function deleteTache(key) {
+                this.state.tacheArray.splice(key, 1);
+                this.setState({
+                    tacheArray: this.state.tacheArray
+                });
+            }
+        }]);
+
+        return Main;
+    }(_react3.default.Component));
+
+    exports.default = Main;
+
+    var styles = _reactNative.StyleSheet.create({
+        container: {
+            flex: 1
+        },
+        header: {
+            backgroundColor: '#E91E63',
+            alignItems: 'center',
+            justifyContent: 'center',
+            borderBottomWidth: 10,
+            borderBottomColor: '#ddd'
+        },
+        headerText: {
+            color: 'white',
+            fontSize: 18,
+            padding: 26
+        },
+        scrollContainer: {
+            flex: 1,
+            marginBottom: 100
+        },
+        footer: {
+            position: 'absolute',
+            bottom: 0,
+            left: 0,
+            right: 0,
+            zIndex: 10
+        },
+        textInput: {
+            alignSelf: 'stretch',
+            color: '#fff',
+            padding: 20,
+            backgroundColor: '#252525',
+            borderTopWidth: 2,
+            borderTopColor: '#ededed'
+        },
+        addButton: {
+            position: 'absolute',
+            zIndex: 11,
+            right: 20,
+            bottom: 90,
+            backgroundColor: '#E91E63',
+            width: 70,
+            height: 70,
+            borderRadius: 35,
+            alignItems: 'center',
+            justifyContent: 'center',
+            elevation: 8
+        },
+        addButtonText: {
+            color: '#fff',
+            fontSize: 24
+        }
+    });
+});

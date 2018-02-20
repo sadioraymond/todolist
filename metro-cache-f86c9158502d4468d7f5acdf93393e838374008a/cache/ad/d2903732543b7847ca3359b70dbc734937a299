@@ -15,7 +15,9 @@ __d(function (global, require, module, exports, _dependencyMap) {
 
   var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-  var _reactNative = require(_dependencyMap[2], "react-native");
+  var _Main = require(_dependencyMap[2], "./app/component/Main");
+
+  var _Main2 = _interopRequireDefault(_Main);
 
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -56,46 +58,12 @@ __d(function (global, require, module, exports, _dependencyMap) {
     _createClass(App, [{
       key: "render",
       value: function render() {
-        return _react3.default.createElement(
-          _reactNative.View,
-          {
-            style: styles.container,
-            __source: {
-              fileName: _jsxFileName,
-              lineNumber: 7
-            }
-          },
-          _react3.default.createElement(
-            _reactNative.Text,
-            {
-              __source: {
-                fileName: _jsxFileName,
-                lineNumber: 8
-              }
-            },
-            "Open up App.js to start working on your app!"
-          ),
-          _react3.default.createElement(
-            _reactNative.Text,
-            {
-              __source: {
-                fileName: _jsxFileName,
-                lineNumber: 9
-              }
-            },
-            "Changes you make will automatically reload."
-          ),
-          _react3.default.createElement(
-            _reactNative.Text,
-            {
-              __source: {
-                fileName: _jsxFileName,
-                lineNumber: 10
-              }
-            },
-            "Shake your phone to open the developer menu."
-          )
-        );
+        return _react3.default.createElement(_Main2.default, {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 7
+          }
+        });
       }
     }]);
 
@@ -103,13 +71,4 @@ __d(function (global, require, module, exports, _dependencyMap) {
   }(_react3.default.Component));
 
   exports.default = App;
-
-  var styles = _reactNative.StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center'
-    }
-  });
 });
